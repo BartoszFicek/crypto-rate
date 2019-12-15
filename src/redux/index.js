@@ -1,1 +1,1 @@
-export { setLanguage } from "./stateActions";
+export { setLanguage, setCurrency } from "./stateActions";

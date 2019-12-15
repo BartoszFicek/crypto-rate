@@ -1,20 +1,25 @@
-import React, { PropTypes } from "react";
-import { setLanguage } from "../redux";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { setLanguage } from "../redux";
 
-type Props = {
-  language: PropTypes.Number,
-  setLanguage: PropTypes.func
-};
-
-export const Bitcoin = (props: Props) => {
+export const Bitcoin = props => {
+  let history = useHistory();
   const language = useSelector(state => state.language);
   const dispatch = useDispatch();
-
+  const state = useSelector(state => state);
   return (
     <div>
       Bitcoin {language}
-      <button onClick={() => dispatch(setLanguage("polski"))}>-</button>
+      <button
+        onClick={() => {
+          dispatch(setLanguage("polski"));
+          history.push("/eos");
+        }}
+      >
+        -
+      </button>
+      {JSON.stringify(state)}
     </div>
   );
 };

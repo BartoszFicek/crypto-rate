@@ -1,0 +1,65 @@
+#menuWrapper {
+  width: 100%;
+  min-height: $menuHeight;
+  border-bottom: 1px solid $grey;
+  padding-bottom: 1px;
+  #menu {
+    min-height: $menuHeight;
+    p {
+      font-size: 20px;
+      margin-top: 13px;
+    }
+    #logoWrapper {
+      #itText {
+        font-weight: bold;
+        color: $darkBlue;
+      }
+      #recruitmentText {
+        font-weight: normal;
+        color: $ligthBlue;
+      }
+      #logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
+    }
+    #logoWrapper:hover {
+      cursor: pointer;
+    }
+    button {
+      color: grey;
+      background-color: transparent;
+      border: none;
+      margin: 0px 10px 0px 10px;
+      font-size: 12px;
+      outline: none;
+    }
+    button:hover {
+      color: $darkBlue;
+      cursor: pointer;
+      transition: 0.4s;
+    }
+  }
+  .ant-select ant-select-enabled {
+    border: 0px solid white;
+    outline: none;
+  }
+  .ant-select ant-select-open {
+    border: 0px solid white;
+    outline: none;
+  }
+  .ant-select-selection {
+    border: 0px solid white;
+    outline: none;
+  }
+  .ant-select-selection--single {
+    border: 0px solid white;
+    outline: none;
+    box-shadow: rgba(25, 29, 37, 0.3) 0px 2px 6px -3px;
+  }
+  .ant-select-selection__rendered {
+    border: 0px solid white;
+    outline: none;
+  }
+}
