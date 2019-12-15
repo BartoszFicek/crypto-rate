@@ -6,11 +6,13 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { Bitcoin, Eos, Ethereum } from "./pages";
+import { Eos, Ethereum, Bitcoin } from "./pages";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
   return (
-    <div className="App">
+    <Provider store={store}>
       <Router>
         <Switch>
           <Route exact path={"/"}>
@@ -21,7 +23,7 @@ function App() {
           <Route path="/ethereum" component={Ethereum}></Route>
         </Switch>
       </Router>
-    </div>
+    </Provider>
   );
 }
 
