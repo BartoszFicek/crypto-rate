@@ -1,5 +1,6 @@
 $menuHeight: 80px;
 $grey: rgb(230, 233, 237);
+$strongGrey: rgb(120, 130, 148);
 $black: rgb(25, 29, 37);
 $ligthBlue: rgb(71, 158, 221);
 $darkBlue: rgb(27, 95, 172);
@@ -7,4 +8,35 @@ $darkBlue: rgb(27, 95, 172);
 .App {
   margin: 0px;
   color: $black;
+  height: 100vh;
+  #currency-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
+  #currency-name {
+    color: $darkBlue;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  #greyBackground {
+    position: absolute;
+    top: 400px;
+    width: 100%;
+    background: rgb(240, 241, 245);
+    height: calc(100vh - 500px);
+  }
+  #footer {
+    height: 100px;
+  }
+  #footerWrapper {
+    width: 100%;
+    color: $strongGrey;
+    position: absolute;
+    bottom: 0;
+    p {
+      margin: 0px 15px 0px 15px;
+    }
+    box-shadow: rgba(25, 29, 37, 0.2) 0px 3px 25px -3px;
+  }
 }

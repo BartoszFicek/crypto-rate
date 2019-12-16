@@ -1,25 +1,19 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { setLanguage } from "../redux";
+import { Grid, Row, Col } from "react-flexbox-grid";
+import { CurrentValue, CryptoName } from "../components";
+import btcImage from "../assets/btc-logo.png";
 
 export const Bitcoin = props => {
-  let history = useHistory();
-  const language = useSelector(state => state.language);
-  const dispatch = useDispatch();
-  const state = useSelector(state => state);
   return (
-    <div>
-      Bitcoin {language}
-      <button
-        onClick={() => {
-          dispatch(setLanguage("polski"));
-          history.push("/eos");
-        }}
-      >
-        -
-      </button>
-      {JSON.stringify(state)}
-    </div>
+    <Grid>
+      <Row id="firstRowWrapper">
+        <Col xs={12} sm={12} md={6}>
+          <CryptoName logoUrl={btcImage} name="Bitcoin (BTC)" />
+        </Col>
+        <Col xs={12} sm={12} md={6}>
+          <CurrentValue />
+        </Col>
+      </Row>
+    </Grid>
   );
 };

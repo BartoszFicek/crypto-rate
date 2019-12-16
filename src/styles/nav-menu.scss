@@ -5,6 +5,7 @@
   padding-bottom: 1px;
   #menu {
     min-height: $menuHeight;
+
     p {
       font-size: 20px;
       margin-top: 13px;
@@ -33,6 +34,7 @@
       border: none;
       margin: 0px 10px 0px 10px;
       font-size: 12px;
+      font-weight: 500;
       outline: none;
     }
     button:hover {

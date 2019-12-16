@@ -1,26 +1,20 @@
-import React, { PropTypes } from "react";
-import { setLanguage } from "../redux";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 
-type Props = {
-  language: PropTypes.Number,
-  setLanguage: PropTypes.func
-};
+import { Grid, Row, Col } from "react-flexbox-grid";
+import { CurrentValue, CryptoName } from "../components";
+import eosImage from "../assets/eos-logo.png";
 
-export const Eos = (props: Props) => {
-  let language = useSelector(state => state.language);
-  let dispatch = useDispatch();
-
+export const Eos = props => {
   return (
-    <div>
-      EOS {language}
-      <button
-        onClick={() => {
-          dispatch(setLanguage("polski"));
-        }}
-      >
-        -
-      </button>
-    </div>
+    <Grid>
+      <Row id="firstRowWrapper">
+        <Col xs={12} sm={12} md={6}>
+          <CryptoName logoUrl={eosImage} name="EOS (EOS)" />
+        </Col>
+        <Col xs={12} sm={12} md={6}>
+          <CurrentValue />
+        </Col>
+      </Row>
+    </Grid>
   );
 };

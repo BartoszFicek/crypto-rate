@@ -13,30 +13,62 @@ export const Menu = () => {
   let history = useHistory();
   const currency = useSelector(state => state.currency);
   const dispatch = useDispatch();
-
+  console.log(history);
   return (
     <div id="menuWrapper">
       <Grid>
         <Row middle="xs" id="menu">
-          <Col xs={12} sm={4} md>
+          <Col xs={12} sm={4} md={4}>
             <Row center="xs" start="sm">
               <div id="logoWrapper" onClick={() => history.push("bitcoin")}>
-                <Row>
-                  <img id="logo" src={logo} alt="TryCodnet logo" />
-                  <p id="itText">IT</p>
-                  <p id="recruitmentText">Recruitment</p>
-                </Row>
+                <Grid>
+                  <Row>
+                    <img id="logo" src={logo} alt="TryCodnet logo" />
+                    <p id="itText">IT</p>
+                    <p id="recruitmentText">Recruitment</p>
+                  </Row>
+                </Grid>
               </div>
             </Row>
           </Col>
-          <Col xs={8} sm={6} md>
+          <Col xs={8} sm={6} md={4}>
             <Row center="xs">
-              <button onClick={() => history.push("bitcoin")}>Bitcoin</button>
-              <button onClick={() => history.push("ethereum")}>Ethereum</button>
-              <button onClick={() => history.push("eos")}>EOS</button>
+              <button
+                onClick={() => history.push("bitcoin")}
+                style={{
+                  color: checkIsActiveAndReturnColor(
+                    history.location.pathname,
+                    "/bitcoin"
+                  )
+                }}
+              >
+                Bitcoin
+              </button>
+              <button
+                onClick={() => history.push("ethereum")}
+                style={{
+                  color: checkIsActiveAndReturnColor(
+                    history.location.pathname,
+                    "/ethereum"
+                  )
+                }}
+              >
+                Ethereum
+              </button>
+              <button
+                onClick={() => history.push("eos")}
+                style={{
+                  color: checkIsActiveAndReturnColor(
+                    history.location.pathname,
+                    "/eos"
+                  )
+                }}
+              >
+                EOS
+              </button>
             </Row>
           </Col>
-          <Col xs={4} sm={2} md>
+          <Col xs={4} sm={2} md={4}>
             <Row start="xs" end="md">
               <Select
                 id="select"
@@ -54,3 +86,6 @@ export const Menu = () => {
     </div>
   );
 };
+
+const checkIsActiveAndReturnColor = (pathname, buttonPath) =>
+  pathname === buttonPath ? "rgb(27, 95, 172)" : "rgb(120, 130, 148)";

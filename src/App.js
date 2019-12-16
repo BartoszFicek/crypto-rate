@@ -6,10 +6,9 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import { Grid, Row, Col } from "react-flexbox-grid";
 import { Eos, Ethereum, Bitcoin } from "./pages";
 import { store } from "./redux/store";
-import { Menu } from "./components";
+import { Menu, Footer } from "./components";
 import "./styles/index.scss";
 
 function App() {
@@ -18,20 +17,16 @@ function App() {
       <Provider store={store}>
         <Router>
           <Menu />
-          <Grid>
-            <Row>
-              <Col xs={12}>
-                <Switch>
-                  <Route exact path={"/"}>
-                    <Redirect to="/bitcoin" />
-                  </Route>
-                  <Route path={"/bitcoin"} component={Bitcoin}></Route>
-                  <Route path="/eos" component={Eos}></Route>
-                  <Route path="/ethereum" component={Ethereum}></Route>
-                </Switch>
-              </Col>
-            </Row>
-          </Grid>
+          <div id="greyBackground" />
+          <Switch>
+            <Route exact path={"/"}>
+              <Redirect to="/bitcoin" />
+            </Route>
+            <Route path={"/bitcoin"} component={Bitcoin}></Route>
+            <Route path="/eos" component={Eos}></Route>
+            <Route path="/ethereum" component={Ethereum}></Route>
+          </Switch>
+          <Footer />
         </Router>
       </Provider>
     </div>
