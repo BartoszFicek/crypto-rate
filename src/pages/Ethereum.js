@@ -6,10 +6,13 @@ import { CurrentValue, CryptoName } from "../components";
 import ethImage from "../assets/eth-logo.png";
 
 export const Ethereum = props => {
+  const dispatch = useDispatch();
   const vsCurrency = useSelector(state => state.currency);
   const data = useSelector(state => state.data);
-  const dispatch = useDispatch();
-  useEffect(() => dispatch(fetchEthereumData(vsCurrency), []));
+  const loading = useSelector(state => state.loading);
+
+  useEffect(() => dispatch(fetchEthereumData(vsCurrency)), [vsCurrency]);
+
   return (
     <Grid>
       <Row id="firstRowWrapper">
@@ -21,7 +24,7 @@ export const Ethereum = props => {
         </Col>
       </Row>
       <Row>
-        <Col> {JSON.stringify(data)}</Col>
+        <Col> {loading ? "loading" : JSON.stringify(data)}</Col>
       </Row>
     </Grid>
   );

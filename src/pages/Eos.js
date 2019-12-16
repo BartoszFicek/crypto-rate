@@ -9,7 +9,7 @@ export const Eos = props => {
   const vsCurrency = useSelector(state => state.currency);
   const data = useSelector(state => state.data);
   const dispatch = useDispatch();
-  useEffect(() => dispatch(fetchEosData(vsCurrency), []));
+  useEffect(() => dispatch(fetchEosData(vsCurrency), [vsCurrency]));
   return (
     <Grid>
       <Row id="firstRowWrapper">

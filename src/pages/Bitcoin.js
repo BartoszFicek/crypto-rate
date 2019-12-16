@@ -10,7 +10,7 @@ export const Bitcoin = props => {
   const data = useSelector(state => state.data);
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(fetchBitcoinData(vsCurrency), []));
+  useEffect(() => dispatch(fetchBitcoinData(vsCurrency), [vsCurrency]));
   return (
     <Grid>
       <Row id="firstRowWrapper">
