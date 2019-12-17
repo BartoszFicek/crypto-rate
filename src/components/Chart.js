@@ -29,7 +29,7 @@ export const Chart = props => {
   useEffect(() => {
     if (prices && marketCaps) {
       let chart = am4core.create("chartdiv", am4charts.XYChart);
-      chart.colors.step = 2;
+      chart.colors.step = 7;
       chart.paddingRight = 20;
 
       let data = [];
@@ -61,11 +61,10 @@ export const Chart = props => {
         series.dataFields.valueY = field;
         series.dataFields.dateX = "date";
         series.strokeWidth = 2;
+        series.name = name;
+        series.tooltipText = "{name}: [bold]{valueY}[/]";
         series.yAxis = valueAxis;
         series.tensionX = 0.8;
-
-        //Tuesday, 10 December 2019 21:07:22.530
-        //Tuesday, 10 December 2019 23:00:46.275
 
         valueAxis.renderer.line.strokeOpacity = 1;
         valueAxis.renderer.line.strokeWidth = 2;

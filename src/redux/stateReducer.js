@@ -6,7 +6,8 @@ const initialState = {
   error: "",
   chartData: {},
   chartError: "",
-  description: ""
+  description: "",
+  lastUpdated: Date.now()
 };
 
 export const stateReducer = (state = initialState, action) => {
@@ -49,7 +50,8 @@ export const stateReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         chartData: action.payload,
-        chartError: ""
+        chartError: "",
+        lastUpdated: Date.now()
       };
     case "FETCH_CHART_DATA_FAILURE":
       return {
@@ -62,7 +64,7 @@ export const stateReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-
+        lastUpdated: Date.now(),
         description: action.payload
       };
     case "FETCH_CURRENCY_DESCRIPTION_FAILURE":
