@@ -34,12 +34,26 @@ export const fetchDataFailure = error => {
   };
 };
 
-export const fetchBitcoinData = vsCurrency => {
+export const fetchChartDataSuccess = data => {
+  return {
+    type: "FETCH_CHART_DATA_SUCCESS",
+    payload: data
+  };
+};
+
+export const fetchChartDataFailure = error => {
+  return {
+    type: "FETCH_CHART_DATA_FAILURE",
+    payload: error
+  };
+};
+
+export const fetchBasicData = (cryptoName, vsCurrency) => {
   return dispatch => {
     dispatch(fetchDataRequest());
     axios
       .get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${vsCurrency}&ids=bitcoin`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${vsCurrency}&ids=${cryptoName}`
       )
       .then(response => {
         dispatch(fetchDataSuccess(response.data[0]));
@@ -50,34 +64,19 @@ export const fetchBitcoinData = vsCurrency => {
   };
 };
 
-export const fetchEthereumData = vsCurrency => {
+export const fetchMarketChartData = (cryptoName, vsCurrency, days) => {
   return dispatch => {
     dispatch(fetchDataRequest());
     axios
       .get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${vsCurrency}&ids=ethereum`
+        `https://api.coingecko.com/api/v3/coins/${cryptoName}/market_chart?vs_currency=${vsCurrency}&days=${days}`
       )
       .then(response => {
-        dispatch(fetchDataSuccess(response.data[0]));
+        console.log("res", response);
+        dispatch(fetchChartDataSuccess(response.data));
       })
       .catch(error => {
-        dispatch(fetchDataFailure(error.message));
-      });
-  };
-};
-
-export const fetchEosData = vsCurrency => {
-  return dispatch => {
-    dispatch(fetchDataRequest());
-    axios
-      .get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${vsCurrency}&ids=eos`
-      )
-      .then(response => {
-        dispatch(fetchDataSuccess(response.data[0]));
-      })
-      .catch(error => {
-        dispatch(fetchDataFailure(error.message));
+        dispatch(fetchChartDataFailure(error.message));
       });
   };
 };

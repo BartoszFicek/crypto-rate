@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchEthereumData } from "../redux/stateActions";
+import { fetchBasicData, fetchMarketChartData } from "../redux/stateActions";
 import { Grid, Row, Col } from "react-flexbox-grid";
-import { CurrentValue, CryptoName } from "../components";
+import {
+  CurrentValue,
+  CryptoName,
+  Loader,
+  CryptoValuesTable
+} from "../components";
 import ethImage from "../assets/eth-logo.png";
 
 export const Ethereum = props => {
@@ -10,21 +15,49 @@ export const Ethereum = props => {
   const vsCurrency = useSelector(state => state.currency);
   const data = useSelector(state => state.data);
   const loading = useSelector(state => state.loading);
+  const error = useSelector(state => state.error);
 
-  useEffect(() => dispatch(fetchEthereumData(vsCurrency)), [vsCurrency]);
+  useEffect(() => {
+    dispatch(fetchBasicData("ethereum", vsCurrency));
+    dispatch(fetchMarketChartData("ethereum", vsCurrency, 1));
+  }, [vsCurrency]);
 
-  return (
+  return loading ? (
+    <Grid>
+      <Row center="xs">
+        <Col xs={12}>
+          <Loader />
+        </Col>
+      </Row>
+    </Grid>
+  ) : error.length > 0 ? (
+    error
+  ) : (
     <Grid>
       <Row id="firstRowWrapper">
         <Col xs={12} sm={12} md={6}>
           <CryptoName logoUrl={ethImage} name="Ethereum (ETH)" />
         </Col>
         <Col xs={12} sm={12} md={6}>
-          <CurrentValue />
+          <CurrentValue
+            currentPrice={data.current_price}
+            vsCurrency={vsCurrency}
+            priceChange24={data.price_change_24h}
+            priceChangePercentage24={data.price_change_percentage_24h}
+            nameWithSymbol={"Ethereum (ETH)"}
+          />
         </Col>
       </Row>
-      <Row>
-        <Col> {loading ? "loading" : JSON.stringify(data)}</Col>
+      <Row id="secondRowWrapper">
+        <Col xs={12}>
+          <CryptoValuesTable
+            vsCurrency={vsCurrency}
+            marketCap={data.market_cap}
+            currentPrice={data.current_price}
+            name={data.name}
+            circulatingSupply={data.circulating_supply}
+          />
+        </Col>
       </Row>
     </Grid>
   );

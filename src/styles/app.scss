@@ -9,6 +9,7 @@ $darkBlue: rgb(27, 95, 172);
   margin: 0px;
   color: $black;
   height: 100vh;
+  font-family: "Roboto";
   #currency-logo {
     width: 50px;
     height: 50px;
@@ -19,17 +20,19 @@ $darkBlue: rgb(27, 95, 172);
     font-size: 16px;
     font-weight: 500;
   }
-  #greyBackground {
+  #whiteBackground {
     position: absolute;
-    top: 400px;
+    top: 350px;
     width: 100%;
     background: rgb(240, 241, 245);
-    height: calc(100vh - 500px);
+    height: calc(100vh - 450px);
+    z-index: -1;
   }
   #footer {
     height: 100px;
   }
   #footerWrapper {
+    background-color: white;
     width: 100%;
     color: $strongGrey;
     position: absolute;
@@ -38,5 +41,117 @@ $darkBlue: rgb(27, 95, 172);
       margin: 0px 15px 0px 15px;
     }
     box-shadow: rgba(25, 29, 37, 0.2) 0px 3px 25px -3px;
+  }
+  #buyCurrencyButton {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    margin-left: 25px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $ligthBlue;
+  }
+  #buyCurrencyButton:hover {
+    background-color: rgba(71, 158, 221, 0.9);
+    cursor: pointer;
+  }
+  #currentPriceValue {
+    font-size: 28px;
+    color: $ligthBlue;
+    font-weight: 400;
+    margin-bottom: 0px;
+  }
+  #currentPriceCurrency {
+    margin-left: 5px;
+    font-size: 28px;
+    color: $black;
+    font-weight: 400;
+    margin-bottom: 0px;
+  }
+  #priceChange24 {
+    font-size: 12px;
+    color: $black;
+    font-weight: 400;
+  }
+  #priceChangePercentage24 {
+    font-size: 12px;
+    color: $black;
+    font-weight: 400;
+    margin-left: 5px;
+  }
+  #secondRowWrapper {
+    margin-top: 50px;
+    height: 130px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(25, 29, 37, 0.15) 0px 3px 30px 0px;
+    .secondRowElement {
+      margin-top: 25px;
+      margin-left: 20px;
+      #capTitle {
+        font-size: 14px;
+        color: $strongGrey;
+      }
+      #capValue {
+        letter-spacing: 1.1px;
+        margin-bottom: 0px;
+      }
+      #capSecondValue {
+        font-size: 10px;
+      }
+    }
+  }
+  #thirdRowWrapper {
+    margin-top: 40px;
+
+    .customButton {
+      padding-left: 20px;
+      padding-right: 20px;
+      height: 35px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-right: 10px;
+      border-radius: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .squareButton {
+      padding-left: 20px;
+      padding-right: 20px;
+      height: 35px;
+      width: 35px;
+      margin-left: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .customButton:hover {
+      background-color: rgba(71, 158, 221, 0.9);
+      cursor: pointer;
+    }
+    .squareButton:hover {
+      background-color: rgba(71, 158, 221, 0.9);
+      cursor: pointer;
+    }
+  }
+  #fourthRowWrapper {
+    height: 350px;
+    margin-top: 40px;
+    background-color: white;
+    box-shadow: rgba(25, 29, 37, 0.2) 0px 3px 30px 0px;
+    border-radius: 5px;
   }
 }

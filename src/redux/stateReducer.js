@@ -3,7 +3,9 @@ const initialState = {
   currency: "USD",
   loading: false,
   data: {},
-  error: ""
+  error: "",
+  chartData: {},
+  chartError: ""
 };
 
 export const stateReducer = (state = initialState, action) => {
@@ -36,6 +38,20 @@ export const stateReducer = (state = initialState, action) => {
         loading: false,
         data: {},
         error: action.payload
+      };
+    case "FETCH_CHART_DATA_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        chartData: action.payload,
+        chartError: ""
+      };
+    case "FETCH_CHART_DATA_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        chartData: {},
+        chartError: action.payload
       };
     default:
       return state;
