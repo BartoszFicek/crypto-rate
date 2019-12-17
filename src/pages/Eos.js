@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBasicData, fetchMarketChartData } from "../redux/stateActions";
 import { Grid, Row, Col } from "react-flexbox-grid";
@@ -6,11 +6,15 @@ import {
   CurrentValue,
   CryptoName,
   Loader,
-  CryptoValuesTable
+  CryptoValuesTable,
+  ButtonsRow
 } from "../components";
 import eosImage from "../assets/eos-logo.png";
 
 export const Eos = props => {
+  let [chartIsActive, setChartIsActive] = useState(true);
+  let [period, setPeriod] = useState("1W");
+
   const data = useSelector(state => state.data);
   const vsCurrency = useSelector(state => state.currency);
   const dispatch = useDispatch();
@@ -21,8 +25,6 @@ export const Eos = props => {
     dispatch(fetchBasicData("eos", vsCurrency));
     dispatch(fetchMarketChartData("eos", vsCurrency, 1));
   }, [vsCurrency]);
-
-  console.log(data);
 
   return loading ? (
     <Grid style={{ zIndex: "1000" }}>
@@ -60,6 +62,18 @@ export const Eos = props => {
             circulatingSupply={data.circulating_supply}
           />
         </Col>
+      </Row>
+      <Row id="thirdRowWrapper">
+        <ButtonsRow
+          setChartIsActive={setChartIsActive}
+          chartIsActive={chartIsActive}
+          setPeriod={setPeriod}
+          period={period}
+          buttonCaption="About Eos"
+        />
+      </Row>
+      <Row id="fourthRowWrapper">
+        <Col xs={12}>Card</Col>
       </Row>
     </Grid>
   );

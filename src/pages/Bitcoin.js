@@ -6,7 +6,8 @@ import {
   CurrentValue,
   CryptoName,
   Loader,
-  CryptoValuesTable
+  CryptoValuesTable,
+  ButtonsRow
 } from "../components";
 import btcImage from "../assets/btc-logo.png";
 
@@ -25,6 +26,7 @@ export const Bitcoin = props => {
     dispatch(fetchBasicData("bitcoin", vsCurrency));
     dispatch(fetchMarketChartData("bitcoin", vsCurrency, 1));
   }, [vsCurrency]);
+  console.log(data);
 
   return loading ? (
     <Grid>
@@ -65,89 +67,13 @@ export const Bitcoin = props => {
       </Row>
 
       <Row id="thirdRowWrapper">
-        <Col xs={12} sm={12} md={6}>
-          <Row>
-            <div
-              onClick={() => setChartIsActive(true)}
-              style={{
-                backgroundColor: chartIsActive ? "rgb(71, 158, 221)" : "white",
-                color: chartIsActive ? "white" : "rgb(120, 130, 148)"
-              }}
-              className="customButton"
-            >
-              Charts
-            </div>
-            <div
-              onClick={() => setChartIsActive(false)}
-              style={{
-                backgroundColor: !chartIsActive ? "rgb(71, 158, 221)" : "white",
-                color: !chartIsActive ? "white" : "rgb(120, 130, 148)"
-              }}
-              className="customButton"
-            >
-              About Bitcoin
-            </div>
-          </Row>
-        </Col>
-        <Col xs={12} sm={12} md={6}>
-          <Row end="xs">
-            <div
-              onClick={() => setPeriod("1W")}
-              style={{
-                backgroundColor:
-                  period === "1W" ? "rgb(71, 158, 221)" : "white",
-                color: period === "1W" ? "white" : "rgb(120, 130, 148)"
-              }}
-              className="squareButton"
-            >
-              1W
-            </div>
-            <div
-              onClick={() => setPeriod("1D")}
-              style={{
-                backgroundColor:
-                  period === "1D" ? "rgb(71, 158, 221)" : "white",
-                color: period === "1D" ? "white" : "rgb(120, 130, 148)"
-              }}
-              className="squareButton"
-            >
-              1D
-            </div>
-            <div
-              onClick={() => setPeriod("4H")}
-              style={{
-                backgroundColor:
-                  period === "4H" ? "rgb(71, 158, 221)" : "white",
-                color: period === "4H" ? "white" : "rgb(120, 130, 148)"
-              }}
-              className="squareButton"
-            >
-              4H
-            </div>
-            <div
-              onClick={() => setPeriod("2H")}
-              style={{
-                backgroundColor:
-                  period === "2H" ? "rgb(71, 158, 221)" : "white",
-                color: period === "2H" ? "white" : "rgb(120, 130, 148)"
-              }}
-              className="squareButton"
-            >
-              2H
-            </div>
-            <div
-              onClick={() => setPeriod("15M")}
-              style={{
-                backgroundColor:
-                  period === "15M" ? "rgb(71, 158, 221)" : "white",
-                color: period === "15M" ? "white" : "rgb(120, 130, 148)"
-              }}
-              className="squareButton"
-            >
-              15M
-            </div>
-          </Row>
-        </Col>
+        <ButtonsRow
+          setChartIsActive={setChartIsActive}
+          chartIsActive={chartIsActive}
+          setPeriod={setPeriod}
+          period={period}
+          buttonCaption="About Bitcoin"
+        />
       </Row>
 
       <Row id="fourthRowWrapper">

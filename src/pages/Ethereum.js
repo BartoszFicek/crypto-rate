@@ -6,11 +6,15 @@ import {
   CurrentValue,
   CryptoName,
   Loader,
-  CryptoValuesTable
+  CryptoValuesTable,
+  ButtonsRow
 } from "../components";
 import ethImage from "../assets/eth-logo.png";
 
 export const Ethereum = props => {
+  let [chartIsActive, setChartIsActive] = useState(true);
+  let [period, setPeriod] = useState("1W");
+
   const dispatch = useDispatch();
   const vsCurrency = useSelector(state => state.currency);
   const data = useSelector(state => state.data);
@@ -56,8 +60,21 @@ export const Ethereum = props => {
             currentPrice={data.current_price}
             name={data.name}
             circulatingSupply={data.circulating_supply}
+            buttonCaption="About Ethereum"
           />
         </Col>
+      </Row>
+      <Row id="thirdRowWrapper">
+        <ButtonsRow
+          setChartIsActive={setChartIsActive}
+          chartIsActive={chartIsActive}
+          setPeriod={setPeriod}
+          period={period}
+          buttonCaption="About Eos"
+        />
+      </Row>
+      <Row id="fourthRowWrapper">
+        <Col xs={12}>Card</Col>
       </Row>
     </Grid>
   );

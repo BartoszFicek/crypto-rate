@@ -4,3 +4,4 @@ export { CurrentValue } from "./CurrentValue";
 export { Footer } from "./Footer";
 export { Loader } from "./Loader";
 export { CryptoValuesTable } from "./CryptoValuesTable";
+export { ButtonsRow } from "./ButtonsRow";
