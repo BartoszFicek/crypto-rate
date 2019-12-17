@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchBasicData, fetchMarketChartData } from "../redux/stateActions";
+import {
+  fetchBasicData,
+  fetchMarketChartData,
+  fetchCurrencyDescription
+} from "../redux/stateActions";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import {
   CurrentValue,
   CryptoName,
   Loader,
   CryptoValuesTable,
-  ButtonsRow
+  ButtonsRow,
+  Chart
 } from "../components";
 import ethImage from "../assets/eth-logo.png";
 
@@ -20,11 +25,22 @@ export const Ethereum = props => {
   const data = useSelector(state => state.data);
   const loading = useSelector(state => state.loading);
   const error = useSelector(state => state.error);
+  const description = useSelector(state => state.description);
+  const chartData = useSelector(state => state.chartData);
 
   useEffect(() => {
     dispatch(fetchBasicData("ethereum", vsCurrency));
-    dispatch(fetchMarketChartData("ethereum", vsCurrency, 1));
+    dispatch(
+      fetchMarketChartData("ethereum", vsCurrency, periodToValue(period))
+    );
+    dispatch(fetchCurrencyDescription("ethereum"));
   }, [vsCurrency]);
+
+  useEffect(() => {
+    dispatch(
+      fetchMarketChartData("ethereum", vsCurrency, periodToValue(period))
+    );
+  }, [period]);
 
   return loading ? (
     <Grid>
@@ -58,9 +74,11 @@ export const Ethereum = props => {
             vsCurrency={vsCurrency}
             marketCap={data.market_cap}
             currentPrice={data.current_price}
-            name={data.name}
+            name={"ETH"}
             circulatingSupply={data.circulating_supply}
             buttonCaption="About Ethereum"
+            volume={data.total_volume}
+            maxSupply={data.total_supply}
           />
         </Col>
       </Row>
@@ -70,12 +88,27 @@ export const Ethereum = props => {
           chartIsActive={chartIsActive}
           setPeriod={setPeriod}
           period={period}
-          buttonCaption="About Eos"
+          buttonCaption="About Ethereum"
         />
       </Row>
       <Row id="fourthRowWrapper">
-        <Col xs={12}>Card</Col>
+        {chartIsActive ? (
+          <Chart
+            period={period}
+            marketCaps={chartData.market_caps}
+            prices={chartData.prices}
+            marketCapsLabel={"Market Cap"}
+            pricesLabel={`Price (${vsCurrency})`}
+          />
+        ) : (
+          <Col xs={12} dangerouslySetInnerHTML={{ __html: description }}></Col>
+        )}
       </Row>
     </Grid>
   );
+};
+
+const periodToValue = period => {
+  if (period === "1W") return 7;
+  else return 1;
 };

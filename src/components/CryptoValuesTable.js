@@ -35,9 +35,10 @@ export const CryptoValuesTable = props => {
               : props.vsCurrency === "EUR"
               ? "€ "
               : ""}
-            {"Count volume"}
+            {parseFloat(parseFloat(props.volume).toFixed(0)).toLocaleString(
+              "en-US"
+            )}
           </p>
-          <p id="capSecondValue">{" meh " + props.name}</p>
         </div>
       </Col>
 
@@ -56,7 +57,14 @@ export const CryptoValuesTable = props => {
       <Col xs={12} sm={6} md={3}>
         <div className="secondRowElement">
           <p id="capTitle">Max Supply</p>
-          <p id="capValue">{"Max supply " + props.name}</p>
+          <p id="capValue">
+            {" "}
+            {parseFloat(parseFloat(props.maxSupply).toFixed(0)).toLocaleString(
+              "en-US"
+            ) +
+              " " +
+              props.name}
+          </p>
         </div>
       </Col>
     </Row>

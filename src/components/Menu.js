@@ -13,7 +13,6 @@ export const Menu = () => {
   let history = useHistory();
   const currency = useSelector(state => state.currency);
   const dispatch = useDispatch();
-  console.log(history);
   return (
     <div id="menuWrapper">
       <Grid>

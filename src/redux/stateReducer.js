@@ -5,7 +5,8 @@ const initialState = {
   data: {},
   error: "",
   chartData: {},
-  chartError: ""
+  chartError: "",
+  description: ""
 };
 
 export const stateReducer = (state = initialState, action) => {
@@ -24,6 +25,10 @@ export const stateReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true
+      };
+    case "FETCH_MARKET_CHART":
+      return {
+        ...state
       };
     case "FETCH_DATA_SUCCESS":
       return {
@@ -52,6 +57,20 @@ export const stateReducer = (state = initialState, action) => {
         loading: false,
         chartData: {},
         chartError: action.payload
+      };
+    case "FETCH_CURRENCY_DESCRIPTION_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+
+        description: action.payload
+      };
+    case "FETCH_CURRENCY_DESCRIPTION_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        description: "",
+        error: action.payload
       };
     default:
       return state;
