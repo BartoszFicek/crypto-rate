@@ -53,59 +53,64 @@ export const Bitcoin = props => {
   ) : error.length > 0 ? (
     error
   ) : (
-    <Grid>
-      <Row id="firstRowWrapper">
-        <Col xs={12} sm={12} md={6}>
-          <CryptoName logoUrl={btcImage} name="Bitcoin (BTC)" />
-        </Col>
-        <Col xs={12} sm={12} md={6}>
-          <CurrentValue
-            currentPrice={data.current_price}
-            vsCurrency={vsCurrency}
-            priceChange24={data.price_change_24h}
-            priceChangePercentage24={data.price_change_percentage_24h}
-            nameWithSymbol={"Bitcoin (BTC)"}
-          />
-        </Col>
-      </Row>
-      <Row id="secondRowWrapper">
-        <Col xs={12}>
-          <CryptoValuesTable
-            vsCurrency={vsCurrency}
-            marketCap={data.market_cap}
-            currentPrice={data.current_price}
-            name={"BTC"}
-            circulatingSupply={data.circulating_supply}
-            volume={data.total_volume}
-            maxSupply={data.total_supply}
-          />
-        </Col>
-      </Row>
+    <div id="all">
+      <Grid style={{ zIndex: 1000 }}>
+        <Row id="firstRowWrapper">
+          <Col xs={12} sm={12} md={6}>
+            <CryptoName logoUrl={btcImage} name="Bitcoin (BTC)" />
+          </Col>
+          <Col xs={12} sm={12} md={6}>
+            <CurrentValue
+              currentPrice={data.current_price}
+              vsCurrency={vsCurrency}
+              priceChange24={data.price_change_24h}
+              priceChangePercentage24={data.price_change_percentage_24h}
+              nameWithSymbol={"Bitcoin (BTC)"}
+            />
+          </Col>
+        </Row>
+        <Row id="secondRowWrapper">
+          <Col xs={12}>
+            <CryptoValuesTable
+              vsCurrency={vsCurrency}
+              marketCap={data.market_cap}
+              currentPrice={data.current_price}
+              name={"BTC"}
+              circulatingSupply={data.circulating_supply}
+              volume={data.total_volume}
+              maxSupply={data.total_supply}
+            />
+          </Col>
+        </Row>
 
-      <Row id="thirdRowWrapper">
-        <ButtonsRow
-          setChartIsActive={setChartIsActive}
-          chartIsActive={chartIsActive}
-          setPeriod={setPeriod}
-          period={period}
-          buttonCaption="About Bitcoin"
-        />
-      </Row>
-
-      <Row id="fourthRowWrapper">
-        {chartIsActive ? (
-          <Chart
+        <Row id="thirdRowWrapper">
+          <ButtonsRow
+            setChartIsActive={setChartIsActive}
+            chartIsActive={chartIsActive}
+            setPeriod={setPeriod}
             period={period}
-            marketCaps={chartData.market_caps}
-            prices={chartData.prices}
-            marketCapsLabel={"Market Cap"}
-            pricesLabel={`Price (${vsCurrency})`}
+            buttonCaption="About Bitcoin"
           />
-        ) : (
-          <Col xs={12} dangerouslySetInnerHTML={{ __html: description }}></Col>
-        )}
-      </Row>
-    </Grid>
+        </Row>
+
+        <Row id="fourthRowWrapper">
+          {chartIsActive ? (
+            <Chart
+              period={period}
+              marketCaps={chartData.market_caps}
+              prices={chartData.prices}
+              marketCapsLabel={"Market Cap"}
+              pricesLabel={`Price (${vsCurrency})`}
+            />
+          ) : (
+            <Col
+              xs={12}
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></Col>
+          )}
+        </Row>
+      </Grid>
+    </div>
   );
 };
 
